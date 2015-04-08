@@ -194,7 +194,7 @@
                             events.push(eventName);
 
                             // Check to ensure the event was not previously registered due to a reconnect
-                            if (!(eventName in $ember.get(module, 'socket')._callbacks)) {
+                            if ($ember.get(module, 'socket').listeners(eventName).count > 0) {
 
                                 // ...And finally we can register the event to listen for it.
                                 $ember.get(module, 'socket').on(eventName, respond.bind(eventName));
